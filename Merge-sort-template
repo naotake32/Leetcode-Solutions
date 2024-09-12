@@ -1,0 +1,35 @@
+// Merge Sort
+//Sort integers with an acsendent order
+
+
+//cut and merge the array that has random ints
+function mergeSort (arr) {
+    if(arr.length <= 1) return arr;
+
+    const mid = Math.floor(arr.length / 2);
+    //call mergeSort recursively to inspect all elements in arr
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid))
+
+    return merge (left, right)
+}
+
+//process of comparing each element of arrays and merging two arrays
+function merge(left, right) {
+    const result = [];
+
+    let i = 0;
+    let j = 0;
+
+    while (i < left.length && j < right.length) {
+        if(left[i] < right[i]) {
+            result.push(left[i]);
+            i++
+        } else {
+            result.push(right[j]);
+            j++
+        }
+    }
+
+    return result.concat(left.slice(i)).concat(right.slice(j));
+}
